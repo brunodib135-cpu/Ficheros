@@ -1,0 +1,22 @@
+def crear_archivo(datos):
+    arch = open("resumen.csv", "w")
+
+    arch.write("Columna,Minimo,Maximo,Media\n")
+
+    for columna in datos:
+        if columna != "Nombre":
+            valores = [float(x) for x in datos[columna]]
+
+            minimo = min(valores)
+            maximo = max(valores)
+            media = sum(valores) / len(valores)
+
+            arch.write("%s,%s,%s,%s\n" % (
+                columna, minimo, maximo, media
+            ))
+
+    arch.close()
+
+
+datos = leer_archivo("cotizacion.csv")
+crear_archivo(datos)
